@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.Country-card {
+  background-color: lightblue;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: black;
+  box-shadow: inset;
+}
+
+img {
+  width: 40rem;
+}
