@@ -1,5 +1,22 @@
 import "./App.css";
 
+let placeholderCountry = [
+  {
+    name: "Japan",
+    population: "1",
+    region: "Asia",
+    capital: "Tokyo",
+    flagImage: "https://flagcdn.com/jp.svg",
+  },
+  {
+    name: "United States of America",
+    population: "1",
+    region: "Americas",
+    capital: "Washington, D.C.",
+    flagImage: "https://flagcdn.com/us.svg",
+  },
+];
+
 function App() {
   return (
     <div className="App">
@@ -12,28 +29,62 @@ function App() {
         </div>
       </header>
       <body>
-        <CountryCard />
+        <div className="Country-list">
+          <CountryCard
+            name="Japan"
+            population="1"
+            region="Asia"
+            capital="Tokyo"
+            flagImage="https://flagcdn.com/jp.svg"
+          />
+          <Countries countryList={placeholderCountry} />
+        </div>
       </body>
     </div>
   );
 }
 
-function CountryCard() {
+async function getCountries() {
+  const res = await fetch("https://restcountries.com/v3.1/all");
+  console.log(res.json());
+  return res;
+}
+
+function CountryCard({ name, population, region, capital, flagImage }) {
   return (
     <div className="Country-card">
-      <img src="https://flagcdn.com/jp.svg" alt="Japan Flag" />
-      <h2>Japan</h2>
+      <img src={flagImage} alt={"Flag of " + { name }} />
+      <h2>{name}</h2>
       <p>
-        <strong>Population: </strong>125,836,021
+        <strong>Population: </strong>
+        {population}
       </p>
       <p>
-        <strong>Region: </strong>Asia
+        <strong>Region: </strong>
+        {region}
       </p>
       <p>
-        <strong>Capital: </strong>Tokyo
+        <strong>Capital: </strong>
+        {capital}
       </p>
     </div>
   );
+}
+
+function Countries({ countryList }) {
+  let arr = [];
+  countryList.forEach((country) => {
+    arr.push(
+      <CountryCard
+        name={country.name}
+        population={country.population}
+        region={country.region}
+        capital={country.capital}
+        flagImage={country.flagImage}
+      />,
+    );
+  });
+  return arr;
 }
 
 export default App;
