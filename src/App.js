@@ -70,7 +70,7 @@ function CountryCards({ countries, setFocusedCountry }) {
     <CountryCard
       key={country.name.official}
       name={country.name.official}
-      population={country.population}
+      population={country.population.toLocaleString()}
       region={country.region}
       capital={country.capital}
       flagImage={country.flags.svg}
@@ -123,7 +123,7 @@ function CountryPage({ country, setFocusedCountry }) {
     <CountryDetails
       key={countryInfo.name.official}
       name={countryInfo.name.official}
-      population={countryInfo.population}
+      population={countryInfo.population.toLocaleString()}
       region={countryInfo.region}
       capital={countryInfo.capital}
       flagImage={countryInfo.flags.svg}
