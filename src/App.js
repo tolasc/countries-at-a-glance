@@ -33,7 +33,9 @@ async function getCountriesData() {
 }
 
 async function getCountryData(name) {
-  const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
+  const res = await fetch(
+    `https://restcountries.com/v3.1/name/${name}?fullText=true`,
+  );
   return await res.json();
 }
 
