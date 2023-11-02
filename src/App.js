@@ -36,6 +36,11 @@ async function getCountryData(name) {
   const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
   return await res.json();
 }
+
+async function getMultiCodeData(codes) {
+  const res = await fetch(
+    `https://restcountries.com/v3.1/alpha?codes=${codes.join(",")}`,
+  );
   return await res.json();
 }
 
@@ -110,16 +115,21 @@ function CountryCard(props) {
 function CountryPage({ country, setFocusedCountry }) {
   console.log(`Looking up:${country}`);
   const [countryInfo, setCountryInfo] = useState();
+  const [borderCountries, setBorderCountries] = useState();
   useEffect(() => {
     const dataFetch = async () => {
       var result = await getCountryData(country);
       setCountryInfo(result[0]);
+      if ("borders" in result[0])
+        setBorderCountries(await getMultiCodeData(result[0].borders));
+      else setBorderCountries("None");
     };
     dataFetch();
   }, [country]);
 
-  if (!countryInfo) return "loading";
+  if (!countryInfo || !borderCountries) return "loading";
   console.log(countryInfo);
+  console.log(borderCountries);
   console.log("Trying render");
   return (
     <CountryDetails
@@ -139,7 +149,9 @@ function CountryPage({ country, setFocusedCountry }) {
         .join(", ")} //get all keys' name
       languages={Object.values(countryInfo.languages).join(", ")} //get all keys' value
       borderCountries={
-        "borders" in countryInfo ? countryInfo.borders.join(", ") : "None"
+        borderCountries === "None"
+          ? borderCountries
+          : borderCountries.map((borderCountry) => borderCountry.name.common)
       } //border into name lookups???
       setFocusedCountry={setFocusedCountry}
     />
@@ -189,7 +201,20 @@ function CountryDetails(props) {
       </p>
       <p>
         <strong>Border Countries: </strong>
-        {props.borderCountries}
+        <div class="border-button-list">
+          {props.borderCountries === "None"
+            ? "None"
+            : props.borderCountries.map((countryName) => (
+                <button
+                  class="border-button"
+                  onClick={() =>
+                    expandCountry(countryName, props.setFocusedCountry)
+                  }
+                >
+                  {countryName}
+                </button>
+              ))}
+        </div>
       </p>
     </div>
   );
