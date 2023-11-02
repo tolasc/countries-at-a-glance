@@ -27,7 +27,7 @@ function App() {
   );
 }
 
-async function getCountriesData() {
+async function getAllCountriesData() {
   const res = await fetch("https://restcountries.com/v3.1/all");
   return await res.json();
 }
@@ -61,7 +61,7 @@ function Countries({ setFocusedCountry }) {
   const [countries, setCountries] = useState();
   useEffect(() => {
     const dataFetch = async () => {
-      var result = await getCountriesData();
+      var result = await getAllCountriesData();
       setCountries(result);
     };
     dataFetch();
