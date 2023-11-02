@@ -70,8 +70,8 @@ function Countries({ setFocusedCountry }) {
 function CountryCards({ countries, setFocusedCountry }) {
   const list = countries.map((country) => (
     <CountryCard
-      key={country.name.official}
-      name={country.name.official}
+      key={country.name.common}
+      name={country.name.common}
       population={country.population.toLocaleString()}
       region={country.region}
       capital={country.capital}
@@ -123,14 +123,14 @@ function CountryPage({ country, setFocusedCountry }) {
   console.log("Trying render");
   return (
     <CountryDetails
-      key={countryInfo.name.official}
-      name={countryInfo.name.official}
+      key={countryInfo.name.common}
+      name={countryInfo.name.common}
       population={countryInfo.population.toLocaleString()}
       region={countryInfo.region}
       capital={countryInfo.capital}
       flagImage={countryInfo.flags.svg}
       nativeName={Object.values(countryInfo.name.nativeName)
-        .map((language) => language.official)
+        .map((language) => language.common)
         .join(", ")} //get first key into official
       subRegion={countryInfo.subregion}
       tld={countryInfo.tld.join(" ")} //space between entries
