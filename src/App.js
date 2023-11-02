@@ -70,8 +70,8 @@ function CountryPage({ country, setFocusedCountry }) {
       flagImage={countryInfo.flags.svg}
       nativeName={countryInfo.name.nativeName.official} //get first key into official
       subRegion={countryInfo.subregion}
-      tld={countryInfo.tld}
-      currencies={countryInfo.currencies.USD.name} //get all keys' name
+      tld={countryInfo.tld} //space between entries
+      currencies={countryInfo.currencies.JPY.name} //get all keys' name
       languages={countryInfo.languages.eng} //get all keys' value
       borderCountries={countryInfo.borders} //border into name lookups???
       setFocusedCountry={setFocusedCountry}
@@ -113,93 +113,74 @@ function CountryCards({ countries, setFocusedCountry }) {
   return <div>{list}</div>;
 }
 
-function CountryCard({
-  name,
-  population,
-  region,
-  capital,
-  flagImage,
-  setFocusedCountry,
-}) {
+function CountryCard(props) {
   return (
     <div
       className="Country-card"
-      onClick={() => expandCountry(name, setFocusedCountry)}
+      onClick={() => expandCountry(props.name, props.setFocusedCountry)}
     >
-      <img src={flagImage} alt={"Flag of " + { name }} />
-      <h2>{name}</h2>
+      <img src={props.flagImage} alt={`Flag of ${props.name}`} />
+      <h2>{props.name}</h2>
       <p>
         <strong>Population: </strong>
-        {population}
+        {props.population}
       </p>
       <p>
         <strong>Region: </strong>
-        {region}
+        {props.region}
       </p>
       <p>
         <strong>Capital: </strong>
-        {capital}
+        {props.capital}
       </p>
     </div>
   );
 }
 
-function CountryDetails({
-  name,
-  population,
-  region,
-  capital,
-  flagImage,
-  nativeName,
-  subRegion,
-  tld,
-  currencies,
-  languages,
-  borderCountries,
-}) {
+function CountryDetails(props) {
   return (
     <div className="Country-details">
       <button>
         <ion-icon name="chevron-back-outline"></ion-icon> Back
       </button>
-      <img src={flagImage} alt={"Flag of " + { name }} />
-      <h2>{name}</h2>
+      <img src={props.flagImage} alt={`Flag of ${props.name}`} />
+      <h2>{props.name}</h2>
       <p>
         <strong>Native Name: </strong>
-        {nativeName}
+        {props.nativeName}
       </p>
       <p>
         <strong>Population: </strong>
-        {population}
+        {props.population}
       </p>
       <p>
         <strong>Region: </strong>
-        {region}
+        {props.region}
       </p>
       <p>
         <strong>Sub Region: </strong>
-        {subRegion}
+        {props.subRegion}
       </p>
       <p>
         <strong>Capital: </strong>
-        {capital}
+        {props.capital}
       </p>
       <p></p>
       <p>
         <strong>Top Level Domain: </strong>
-        {tld}
+        {props.tld}
       </p>
       <p>
         <strong>Currencies: </strong>
-        {currencies}
+        {props.currencies}
       </p>
       <p>
         <strong>Languages: </strong>
-        {languages}
+        {props.languages}
       </p>
       <p>
         <strong>Border Countries: </strong>
-        {borderCountries}
+        {props.borderCountries}
       </p>
     </div>
   );
