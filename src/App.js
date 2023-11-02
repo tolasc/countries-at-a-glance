@@ -201,14 +201,15 @@ function CountryDetails(props) {
         <strong>Languages: </strong>
         {props.languages}
       </p>
-      <p>
+      <div className="border-countries">
         <strong>Border Countries: </strong>
-        <div class="border-button-list">
+        <div className="border-button-list">
           {props.borderCountries === "None"
             ? "None"
             : props.borderCountries.map((countryName) => (
                 <button
-                  class="border-button"
+                  className="border-button"
+                  key={countryName}
                   onClick={() =>
                     expandCountry(countryName, props.setFocusedCountry)
                   }
@@ -217,7 +218,7 @@ function CountryDetails(props) {
                 </button>
               ))}
         </div>
-      </p>
+      </div>
     </div>
   );
 }
