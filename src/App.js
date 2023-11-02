@@ -1,21 +1,5 @@
 import "./App.css";
-
-let placeholderCountry = [
-  {
-    name: "Japan",
-    population: "1",
-    region: "Asia",
-    capital: "Tokyo",
-    flagImage: "https://flagcdn.com/jp.svg",
-  },
-  {
-    name: "United States of America",
-    population: "1",
-    region: "Americas",
-    capital: "Washington, D.C.",
-    flagImage: "https://flagcdn.com/us.svg",
-  },
-];
+import React, { useEffect, useState } from "react";
 
 function App() {
   return (
@@ -30,14 +14,7 @@ function App() {
       </header>
       <body>
         <div className="Country-list">
-          <CountryCard
-            name="Japan"
-            population="1"
-            region="Asia"
-            capital="Tokyo"
-            flagImage="https://flagcdn.com/jp.svg"
-          />
-          <Countries countryList={placeholderCountry} />
+          <Countries setFocusedCountry={setFocusedCountry} />
         </div>
       </body>
     </div>
@@ -46,8 +23,41 @@ function App() {
 
 async function getCountries() {
   const res = await fetch("https://restcountries.com/v3.1/all");
-  console.log(res.json());
-  return res;
+  return await res.json();
+}
+
+function Countries({ setFocusedCountry }) {
+  console.log("running");
+  const [countries, setCountries] = useState();
+  useEffect(() => {
+    const dataFetch = async () => {
+      var result = await getCountries();
+      setCountries(result);
+    };
+    dataFetch();
+  }, []);
+
+  if (!countries) return "loading";
+  console.log("rendering");
+  return (
+    <CountryCards countries={countries} setFocusedCountry={setFocusedCountry} />
+  );
+}
+
+function CountryCards({ countries, setFocusedCountry }) {
+  const list = countries.map((country) => (
+    <CountryCard
+      key={country.name.official}
+      name={country.name.official}
+      population={country.population}
+      region={country.region}
+      capital={country.capital}
+      flagImage={country.flags.svg}
+      setFocusedCountry={setFocusedCountry}
+    />
+  ));
+  //console.log(list);
+  return <div>{list}</div>;
 }
 
 function CountryCard({ name, population, region, capital, flagImage }) {
