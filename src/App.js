@@ -43,40 +43,8 @@ function expandCountry(name, setFocusedCountry) {
 }
 
 function collapseCountry(setFocusedCountry) {
+  console.log("bye");
   setFocusedCountry(null);
-}
-
-function CountryPage({ country, setFocusedCountry }) {
-  console.log(`Looking up:${country}`);
-  const [countryInfo, setCountryInfo] = useState();
-  useEffect(() => {
-    const dataFetch = async () => {
-      var result = await getCountryData(country);
-      setCountryInfo(result[0]);
-    };
-    dataFetch();
-  }, [country]);
-
-  if (!countryInfo) return "loading";
-  console.log(countryInfo);
-  console.log("Trying render");
-  return (
-    <CountryDetails
-      key={countryInfo.name.official}
-      name={countryInfo.name.official}
-      population={countryInfo.population}
-      region={countryInfo.region}
-      capital={countryInfo.capital}
-      flagImage={countryInfo.flags.svg}
-      nativeName={countryInfo.name.nativeName.official} //get first key into official
-      subRegion={countryInfo.subregion}
-      tld={countryInfo.tld} //space between entries
-      currencies={countryInfo.currencies.JPY.name} //get all keys' name
-      languages={countryInfo.languages.eng} //get all keys' value
-      borderCountries={countryInfo.borders} //border into name lookups???
-      setFocusedCountry={setFocusedCountry}
-    />
-  );
 }
 
 function Countries({ setFocusedCountry }) {
@@ -137,10 +105,43 @@ function CountryCard(props) {
   );
 }
 
+function CountryPage({ country, setFocusedCountry }) {
+  console.log(`Looking up:${country}`);
+  const [countryInfo, setCountryInfo] = useState();
+  useEffect(() => {
+    const dataFetch = async () => {
+      var result = await getCountryData(country);
+      setCountryInfo(result[0]);
+    };
+    dataFetch();
+  }, [country]);
+
+  if (!countryInfo) return "loading";
+  console.log(countryInfo);
+  console.log("Trying render");
+  return (
+    <CountryDetails
+      key={countryInfo.name.official}
+      name={countryInfo.name.official}
+      population={countryInfo.population}
+      region={countryInfo.region}
+      capital={countryInfo.capital}
+      flagImage={countryInfo.flags.svg}
+      nativeName={countryInfo.name.nativeName.official} //get first key into official
+      subRegion={countryInfo.subregion}
+      tld={countryInfo.tld} //space between entries
+      currencies={countryInfo.currencies.JPY.name} //get all keys' name
+      languages={countryInfo.languages.eng} //get all keys' value
+      borderCountries={countryInfo.borders} //border into name lookups???
+      setFocusedCountry={setFocusedCountry}
+    />
+  );
+}
+
 function CountryDetails(props) {
   return (
     <div className="Country-details">
-      <button>
+      <button onClick={() => collapseCountry(props.setFocusedCountry)}>
         <ion-icon name="chevron-back-outline"></ion-icon> Back
       </button>
       <img src={props.flagImage} alt={`Flag of ${props.name}`} />
