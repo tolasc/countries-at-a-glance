@@ -33,7 +33,9 @@ async function getCountries() {
 }
 
 async function getCountryData(name) {
-  const res = await fetch(`https://restcountries.com/v3.1/name/Japan`);
+  const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
+  return await res.json();
+}
   return await res.json();
 }
 
@@ -127,12 +129,18 @@ function CountryPage({ country, setFocusedCountry }) {
       region={countryInfo.region}
       capital={countryInfo.capital}
       flagImage={countryInfo.flags.svg}
-      nativeName={countryInfo.name.nativeName.official} //get first key into official
+      nativeName={Object.values(countryInfo.name.nativeName)
+        .map((language) => language.official)
+        .join(", ")} //get first key into official
       subRegion={countryInfo.subregion}
-      tld={countryInfo.tld} //space between entries
-      currencies={countryInfo.currencies.JPY.name} //get all keys' name
-      languages={countryInfo.languages.eng} //get all keys' value
-      borderCountries={countryInfo.borders} //border into name lookups???
+      tld={countryInfo.tld.join(" ")} //space between entries
+      currencies={Object.values(countryInfo.currencies)
+        .map((currency) => currency.name)
+        .join(", ")} //get all keys' name
+      languages={Object.values(countryInfo.languages).join(", ")} //get all keys' value
+      borderCountries={
+        "borders" in countryInfo ? countryInfo.borders.join(", ") : "None"
+      } //border into name lookups???
       setFocusedCountry={setFocusedCountry}
     />
   );
