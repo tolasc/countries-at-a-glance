@@ -87,7 +87,7 @@ function CountryCards({ countries, setFocusedCountry }) {
     />
   ));
   //console.log(list);
-  return <div>{list}</div>;
+  return list;
 }
 
 function CountryCard(props) {
