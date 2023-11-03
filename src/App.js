@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function App() {
   const [focusedCountry, setFocusedCountry] = useState();
+  const [keyWord, setKeyWord] = useState("");
   return (
     <div className="App">
       <header className="App-header">
@@ -14,8 +15,19 @@ function App() {
         </div>
       </header>
       {focusedCountry == null ? (
-        <div className="Country-list">
-          <Countries setFocusedCountry={setFocusedCountry} />
+        <div className="interactable">
+          <form>
+            <label>
+              Search:
+              <input onChange={(e) => setKeyWord(e.target.value)} type="text" />
+            </label>
+          </form>
+          <div className="Country-list">
+            <Countries
+              keyWord={keyWord}
+              setFocusedCountry={setFocusedCountry}
+            />
+          </div>
         </div>
       ) : (
         <CountryPage
@@ -56,7 +68,7 @@ function collapseCountry(setFocusedCountry) {
   setFocusedCountry(null);
 }
 
-function Countries({ setFocusedCountry }) {
+function Countries({ keyWord, setFocusedCountry }) {
   console.log("running");
   const [countries, setCountries] = useState();
   useEffect(() => {
@@ -70,7 +82,12 @@ function Countries({ setFocusedCountry }) {
   if (!countries) return "loading";
   console.log("rendering");
   return (
-    <CountryCards countries={countries} setFocusedCountry={setFocusedCountry} />
+    <CountryCards
+      countries={countries.filter((country) =>
+        country.name.common.match(new RegExp(keyWord, "i")),
+      )}
+      setFocusedCountry={setFocusedCountry}
+    />
   );
 }
 
