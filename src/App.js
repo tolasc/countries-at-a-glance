@@ -1,9 +1,12 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [focusedCountry, setFocusedCountry] = useState();
   const [keyWord, setKeyWord] = useState("");
+  const [region, setRegion] = useState("All");
   return (
     <div className="App">
       <header className="App-header">
@@ -22,6 +25,7 @@ function App() {
               <input onChange={(e) => setKeyWord(e.target.value)} type="text" />
             </label>
           </form>
+          <RegionDropdown />
           <div className="Country-list">
             <Countries
               keyWord={keyWord}
@@ -238,6 +242,29 @@ function CountryDetails(props) {
       </div>
     </div>
   );
+}
+
+function RegionDropdown(props) {
+  return (
+    <Dropdown onSelect={go}>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Filter by Region
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item eventKey="All">All</Dropdown.Item>
+        <Dropdown.Item eventKey="Africa">Africa</Dropdown.Item>
+        <Dropdown.Item eventKey="America">America</Dropdown.Item>
+        <Dropdown.Item eventKey="Asia">Asia</Dropdown.Item>
+        <Dropdown.Item eventKey="Europe">Europe</Dropdown.Item>
+        <Dropdown.Item eventKey="Oceania">Oceania</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
+
+function go(e) {
+  console.log(e);
 }
 
 export default App;
