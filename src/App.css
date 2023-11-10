@@ -46,9 +46,10 @@ body {
 .Country-list {
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: center;
   gap: 2.5rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .Country-card {
