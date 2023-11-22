@@ -25,9 +25,10 @@ function App() {
               <input onChange={(e) => setKeyWord(e.target.value)} type="text" />
             </label>
           </form>
-          <RegionDropdown />
+          <RegionDropdown setRegion={setRegion} />
           <div className="Country-list">
             <Countries
+              region={region}
               keyWord={keyWord}
               setFocusedCountry={setFocusedCountry}
             />
@@ -48,6 +49,13 @@ async function getAllCountriesData() {
   return await res.json();
 }
 
+async function getCountryDataByRegion(regionName) {
+  const res = await fetch(
+    `https://restcountries.com/v3.1/region/${regionName}`,
+  );
+  return await res.json();
+}
+
 async function getCountryDataByName(name) {
   const res = await fetch(
     `https://restcountries.com/v3.1/name/${name}?fullText=true`,
@@ -62,26 +70,18 @@ async function getMultiCodeData(codes) {
   return await res.json();
 }
 
-function expandCountry(name, setFocusedCountry) {
-  setFocusedCountry(name);
-  console.log(name);
-}
-
-function collapseCountry(setFocusedCountry) {
-  console.log("bye");
-  setFocusedCountry(null);
-}
-
-function Countries({ keyWord, setFocusedCountry }) {
+function Countries({ region, keyWord, setFocusedCountry }) {
   console.log("running");
   const [countries, setCountries] = useState();
   useEffect(() => {
     const dataFetch = async () => {
-      var result = await getAllCountriesData();
+      var result = region.match("All")
+        ? await getAllCountriesData()
+        : await getCountryDataByRegion(region);
       setCountries(result);
     };
     dataFetch();
-  }, []);
+  }, [region]);
 
   if (!countries) return "loading";
   console.log("rendering");
@@ -117,7 +117,7 @@ function CountryCard(props) {
   return (
     <div
       className="Country-card"
-      onClick={() => expandCountry(props.name, props.setFocusedCountry)}
+      onClick={() => props.setFocusedCountry(props.name)}
     >
       <img src={props.flagImage} alt={`Flag of ${props.name}`} />
       <h2>{props.name}</h2>
@@ -143,7 +143,7 @@ function CountryPage({ country, setFocusedCountry }) {
   const [borderCountries, setBorderCountries] = useState();
   useEffect(() => {
     const dataFetch = async () => {
-      var result = await getCountryData(country);
+      var result = await getCountryDataByName(country);
       setCountryInfo(result[0]);
       if ("borders" in result[0])
         setBorderCountries(await getMultiCodeData(result[0].borders));
@@ -186,7 +186,7 @@ function CountryPage({ country, setFocusedCountry }) {
 function CountryDetails(props) {
   return (
     <div className="Country-details">
-      <button onClick={() => collapseCountry(props.setFocusedCountry)}>
+      <button onClick={() => props.setFocusedCountry(null)}>
         <ion-icon name="chevron-back-outline"></ion-icon> Back
       </button>
       <img src={props.flagImage} alt={`Flag of ${props.name}`} />
@@ -233,9 +233,7 @@ function CountryDetails(props) {
                 <button
                   className="border-button"
                   key={countryName}
-                  onClick={() =>
-                    expandCountry(countryName, props.setFocusedCountry)
-                  }
+                  onClick={() => props.setFocusedCountry(countryName)}
                 >
                   {countryName}
                 </button>
@@ -246,9 +244,9 @@ function CountryDetails(props) {
   );
 }
 
-function RegionDropdown(props) {
+function RegionDropdown({ setRegion }) {
   return (
-    <Dropdown onSelect={go}>
+    <Dropdown onSelect={setRegion}>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Filter by Region
       </Dropdown.Toggle>
@@ -263,10 +261,6 @@ function RegionDropdown(props) {
       </Dropdown.Menu>
     </Dropdown>
   );
-}
-
-function go(e) {
-  console.log(e);
 }
 
 export default App;
