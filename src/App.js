@@ -88,7 +88,9 @@ function Countries({ keyWord, setFocusedCountry }) {
   return (
     <CountryCards
       countries={countries.filter((country) =>
-        country.name.common.match(new RegExp(keyWord, "i")),
+        country.name.common.match(
+          new RegExp(JSON.stringify(keyWord).slice(1, -1), "i"),
+        ),
       )}
       setFocusedCountry={setFocusedCountry}
     />
