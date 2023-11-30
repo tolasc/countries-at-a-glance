@@ -23,8 +23,14 @@
   padding: 1rem;
 }
 
+div.header-title {
+  display: flex;
+  height: 100%;
+}
 h1 {
   font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 button {
@@ -35,12 +41,15 @@ button {
   background-color: transparent;
   border: none;
   padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 body {
   width: 100vw;
   background-color: var(--verylightgray);
   display: flex;
+  font-size: 14px;
 }
 
 .Country-list {

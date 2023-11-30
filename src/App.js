@@ -1,7 +1,7 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   const [focusedCountry, setFocusedCountry] = useState();
