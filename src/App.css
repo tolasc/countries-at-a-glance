@@ -53,6 +53,40 @@ body {
   font-size: 14px;
 }
 
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 2rem;
+}
+
+.search-bar {
+  background-color: var(--white);
+  padding: 0.5rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 25rem;
+}
+
+.search-bar ion-icon {
+  color: var(--darkblue);
+  text-align: center;
+  font-size: 16px;
+}
+
+.search-bar label {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  gap: 1rem;
+}
+
+.search-bar input {
+  width: 100%;
+  border: none;
+}
+
 .Country-list {
   display: flex;
   flex-direction: column;
