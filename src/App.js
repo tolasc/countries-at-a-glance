@@ -199,55 +199,64 @@ function CountryDetails(props) {
       <button onClick={() => props.setFocusedCountry(null)}>
         <ion-icon name="chevron-back-outline"></ion-icon> Back
       </button>
-      <img src={props.flagImage} alt={`Flag of ${props.name}`} />
-      <h2>{props.name}</h2>
-      <p>
-        <strong>Native Name: </strong>
-        {props.nativeName}
-      </p>
-      <p>
-        <strong>Population: </strong>
-        {props.population}
-      </p>
-      <p>
-        <strong>Region: </strong>
-        {props.region}
-      </p>
-      <p>
-        <strong>Sub Region: </strong>
-        {props.subRegion}
-      </p>
-      <p>
-        <strong>Capital: </strong>
-        {props.capital}
-      </p>
-      <p></p>
-      <p>
-        <strong>Top Level Domain: </strong>
-        {props.tld}
-      </p>
-      <p>
-        <strong>Currencies: </strong>
-        {props.currencies}
-      </p>
-      <p>
-        <strong>Languages: </strong>
-        {props.languages}
-      </p>
-      <div className="border-countries">
-        <strong>Border Countries: </strong>
-        <div className="border-button-list">
-          {props.borderCountries === "None"
-            ? "None"
-            : props.borderCountries.map((countryName) => (
-                <button
-                  className="border-button"
-                  key={countryName}
-                  onClick={() => props.setFocusedCountry(countryName)}
-                >
-                  {countryName}
-                </button>
-              ))}
+      <div className="Country-main-content">
+        <img src={props.flagImage} alt={`Flag of ${props.name}`} />
+        <div className="Country-content">
+          <h2>{props.name}</h2>
+          <div className="Country-main-details">
+            <div className="Country-main-important-details">
+              <p>
+                <strong>Native Name: </strong>
+                {props.nativeName}
+              </p>
+              <p>
+                <strong>Population: </strong>
+                {props.population}
+              </p>
+              <p>
+                <strong>Region: </strong>
+                {props.region}
+              </p>
+              <p>
+                <strong>Sub Region: </strong>
+                {props.subRegion}
+              </p>
+              <p>
+                <strong>Capital: </strong>
+                {props.capital}
+              </p>
+            </div>
+            <div className="Country-main-side-details">
+              <p>
+                <strong>Top Level Domain: </strong>
+                {props.tld}
+              </p>
+              <p>
+                <strong>Currencies: </strong>
+                {props.currencies}
+              </p>
+              <p>
+                <strong>Languages: </strong>
+                {props.languages}
+              </p>
+            </div>
+          </div>
+          <div className="border-countries">
+            <strong>Border Countries: </strong>
+            <div className="border-button-list">
+              {props.borderCountries === "None"
+                ? "None"
+                : props.borderCountries.map((countryName) => (
+                    <button
+                      className="border-button"
+                      key={countryName}
+                      onClick={() => props.setFocusedCountry(countryName)}
+                    >
+                      {countryName}
+                    </button>
+                  ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
