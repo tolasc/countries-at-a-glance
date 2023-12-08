@@ -18,14 +18,20 @@ function App() {
         </div>
       </header>
       {focusedCountry == null ? (
-        <div className="interactable">
-          <form>
-            <label>
-              Search:
-              <input onChange={(e) => setKeyWord(e.target.value)} type="text" />
-            </label>
-          </form>
-          <RegionDropdown setRegion={setRegion} />
+        <div className="main-page-content">
+          <div className="filter-options">
+            <form className="search-bar">
+              <label>
+                <ion-icon name="search-outline"></ion-icon>
+                <input
+                  onChange={(e) => setKeyWord(e.target.value)}
+                  type="text"
+                  placeholder="Search for a country..."
+                />
+              </label>
+            </form>
+            <RegionDropdown className="region-dropdown" setRegion={setRegion} />
+          </div>
           <div className="Country-list">
             <Countries
               region={region}
