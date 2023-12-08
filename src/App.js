@@ -30,7 +30,7 @@ function App() {
                 />
               </label>
             </form>
-            <RegionDropdown className="region-dropdown" setRegion={setRegion} />
+            <RegionDropdown setRegion={setRegion} />
           </div>
           <div className="Country-list">
             <Countries
@@ -252,7 +252,7 @@ function CountryDetails(props) {
 
 function RegionDropdown({ setRegion }) {
   return (
-    <Dropdown onSelect={setRegion}>
+    <Dropdown className="region-dropdown" onSelect={setRegion}>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Filter by Region
       </Dropdown.Toggle>
