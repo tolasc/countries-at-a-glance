@@ -126,19 +126,23 @@ function CountryCard(props) {
       onClick={() => props.setFocusedCountry(props.name)}
     >
       <img src={props.flagImage} alt={`Flag of ${props.name}`} />
-      <h2>{props.name}</h2>
-      <p>
-        <strong>Population: </strong>
-        {props.population}
-      </p>
-      <p>
-        <strong>Region: </strong>
-        {props.region}
-      </p>
-      <p>
-        <strong>Capital: </strong>
-        {props.capital}
-      </p>
+      <div className="Country-brief-container Country-brief-details">
+        <h2>{props.name}</h2>
+        <div className="Country-brief-container">
+          <p>
+            <strong>Population: </strong>
+            {props.population}
+          </p>
+          <p>
+            <strong>Region: </strong>
+            {props.region}
+          </p>
+          <p>
+            <strong>Capital: </strong>
+            {props.capital}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
