@@ -125,13 +125,15 @@ body {
 }
 
 .Country-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
   row-gap: 2.5rem;
   column-gap: 4.5rem;
   margin-top: 1rem;
+
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 255px);
 }
 
 .Country-card {
