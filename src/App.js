@@ -90,7 +90,7 @@ function Countries({ region, keyWord, setFocusedCountry }) {
     dataFetch();
   }, [region]);
 
-  if (!countries) return "loading";
+  if (!countries) return <p>Loading...</p>;
   console.log("rendering");
   return (
     <CountryCards
