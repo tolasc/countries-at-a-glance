@@ -246,17 +246,19 @@ function CountryDetails(props) {
           <div className="border-countries">
             <strong>Border Countries: </strong>
             <div className="border-button-list">
-              {props.borderCountries === "None"
-                ? "None"
-                : props.borderCountries.map((countryName) => (
-                    <button
-                      className="border-button"
-                      key={countryName}
-                      onClick={() => props.setFocusedCountry(countryName)}
-                    >
-                      {countryName}
-                    </button>
-                  ))}
+              {props.borderCountries === "None" ? (
+                <p>None</p>
+              ) : (
+                props.borderCountries.map((countryName) => (
+                  <button
+                    className="border-button"
+                    key={countryName}
+                    onClick={() => props.setFocusedCountry(countryName)}
+                  >
+                    {countryName}
+                  </button>
+                ))
+              )}
             </div>
           </div>
         </div>

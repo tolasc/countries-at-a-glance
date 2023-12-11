@@ -7,14 +7,16 @@
   --darkgray: hsl(0, 0%, 52%); /* Light Mode Input */
   --verylightgray: hsl(0, 0%, 98%); /*Light Mode Background*/
   --white: hsl(0, 0%, 100%); /*Dark Mode Text & Light Mode Elements*/
+  --dropshadow: rgba(0, 0, 0, 0.1); /*Color for drop shadow*/
+  --fonts: "Nunito Sans", sans-serif;
 }
 
 .App-header {
-  background-color: white;
+  background-color: var(--white);
   width: 100vw;
   min-height: 5rem;
   display: flex;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 6px var(--dropshadow);
 }
 
 .header-content {
@@ -27,9 +29,19 @@
   padding-right: 5%;
 }
 
+h1,
+h2 {
+  font-weight: 800;
+}
+strong {
+  font-weight: 600;
+}
+p {
+  font-weight: 300;
+}
+
 h1 {
   font-size: 14px;
-  font-weight: 800;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -46,8 +58,7 @@ button {
 }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
-  font-weight: 600;
+  font-family: var(--fonts);
   width: 100vw;
   background-color: var(--verylightgray);
   display: flex;
@@ -66,10 +77,11 @@ body {
 
 .search-bar {
   background-color: var(--white);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px var(--dropshadow);
   padding: 0.75rem;
   width: 100%;
   max-width: 25rem;
+  border-radius: 4px;
 }
 
 .search-bar ion-icon {
@@ -98,7 +110,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   border: none;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px var(--dropshadow);
   padding: 1rem;
   padding-left: 1.5rem;
   gap: 4rem;
@@ -119,7 +131,7 @@ body {
   width: 100%;
   font-size: 14px;
   border: none;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px var(--dropshadow);
   margin-top: 0.25rem;
 }
 
@@ -153,7 +165,7 @@ body {
 
   display: grid;
   grid-template-rows: 0.9fr 1fr;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px var(--dropshadow);
 }
 
 .Country-card .Country-brief-details {
@@ -168,15 +180,9 @@ body {
 
 .Country-card .Country-brief-container h2 {
   font-size: 16px;
-  font-weight: 800;
-}
-
-.Country-card .Country-brief-container p strong {
-  font-weight: 600;
 }
 
 .Country-card .Country-brief-container p {
-  font-weight: 300;
   margin: 0;
 }
 
@@ -199,7 +205,7 @@ img {
   font-size: 14px;
   font-weight: 600;
   border: none;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px var(--dropshadow);
   border-radius: 4px;
   padding: 0.25rem;
   padding-left: 2rem;
@@ -227,10 +233,6 @@ img {
   justify-content: center;
   width: 100%;
   gap: 2rem;
-}
-
-.Country-content h2 {
-  font-weight: 800;
 }
 
 .Country-main-content {
