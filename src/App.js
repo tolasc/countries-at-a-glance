@@ -27,6 +27,7 @@ function App() {
                   onChange={(e) => setKeyWord(e.target.value)}
                   type="text"
                   placeholder="Search for a country..."
+                  value={keyWord}
                 />
               </label>
             </form>
