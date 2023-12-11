@@ -268,7 +268,6 @@ img {
     flex-wrap: nowrap;
   }
   .Country-main-content img {
-    width: 100%;
     max-width: 50%;
     height: 100%;
     margin: auto;
