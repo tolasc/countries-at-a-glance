@@ -257,7 +257,13 @@ img {
   gap: 0.5rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 850px) {
+  h1 {
+    font-size: 24px;
+  }
+  button {
+    font-size: 16px;
+  }
   .Country-main-content {
     flex-wrap: nowrap;
   }
