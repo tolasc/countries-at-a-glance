@@ -188,11 +188,6 @@ body {
 
 img {
   width: 100%;
-  max-width: 500px;
-}
-
-.Country-main-content img {
-  margin: auto;
 }
 
 .Country-back {
@@ -267,7 +262,10 @@ img {
     flex-wrap: nowrap;
   }
   .Country-main-content img {
-    width: 50%;
+    width: 100%;
+    max-width: 50%;
+    height: 100%;
+    margin: auto;
   }
   .Country-content {
     width: 50%;
