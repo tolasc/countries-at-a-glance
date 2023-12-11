@@ -196,9 +196,11 @@ function CountryPage({ country, setFocusedCountry }) {
 function CountryDetails(props) {
   return (
     <div className="Country-details">
-      <button onClick={() => props.setFocusedCountry(null)}>
-        <ion-icon name="chevron-back-outline"></ion-icon> Back
-      </button>
+      <div className="Country-back">
+        <button onClick={() => props.setFocusedCountry(null)}>
+          <ion-icon name="chevron-back-outline"></ion-icon> Back
+        </button>
+      </div>
       <div className="Country-main-content">
         <img src={props.flagImage} alt={`Flag of ${props.name}`} />
         <div className="Country-content">

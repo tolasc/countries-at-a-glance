@@ -182,4 +182,92 @@ body {
 
 img {
   width: 100%;
+  max-width: 500px;
+}
+
+.Country-main-content img {
+  margin: auto;
+}
+
+.Country-back {
+  width: 100%;
+}
+
+.Country-details button {
+  background-color: var(--white);
+  color: var(--verydarkbluetext);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.Country-details .Country-back button {
+  padding: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.Country-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+  font-size: 16px;
+  gap: 3rem;
+}
+
+.Country-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.Country-content h2 {
+  font-weight: 800;
+}
+
+.Country-main-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.Country-main-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.border-countries {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+  row-gap: 1rem;
+}
+
+.border-button-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .Country-main-content {
+    flex-wrap: nowrap;
+  }
+  .Country-main-content img {
+    width: 50%;
+  }
+  .Country-content {
+    width: 50%;
+  }
 }
