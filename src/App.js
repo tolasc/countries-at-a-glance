@@ -12,7 +12,7 @@ function App() {
       <header className="App-header">
         <div className="header-content">
           <h1>Where in the world?</h1>
-          <button>
+          <button onClick={swapTheme}>
             <ion-icon name="moon-outline"></ion-icon> Dark Mode
           </button>
         </div>
@@ -49,6 +49,10 @@ function App() {
       )}
     </div>
   );
+}
+
+function swapTheme() {
+  document.querySelector("html").toggleAttribute("theme-mode-dark");
 }
 
 async function getAllCountriesData() {
