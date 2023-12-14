@@ -13,40 +13,46 @@ function App() {
         <div className="header-content">
           <h1>Where in the world?</h1>
           <button onClick={swapTheme}>
-            <ion-icon name="moon-outline"></ion-icon> Dark Mode
+            <ion-icon name="moon-outline" alt="moon outline"></ion-icon> Dark
+            Mode
           </button>
         </div>
       </header>
-      {focusedCountry == null ? (
-        <div className="main-page-content">
-          <div className="filter-options">
-            <form className="search-bar">
-              <label>
-                <ion-icon name="search-outline"></ion-icon>
-                <input
-                  onChange={(e) => setKeyWord(e.target.value)}
-                  type="text"
-                  placeholder="Search for a country..."
-                  value={keyWord}
-                />
-              </label>
-            </form>
-            <RegionDropdown setRegion={setRegion} />
+      <main>
+        {focusedCountry == null ? (
+          <div className="main-page-content">
+            <div className="filter-options">
+              <form className="search-bar">
+                <label>
+                  <ion-icon
+                    name="search-outline"
+                    alt="search outline"
+                  ></ion-icon>
+                  <input
+                    onChange={(e) => setKeyWord(e.target.value)}
+                    type="text"
+                    placeholder="Search for a country..."
+                    value={keyWord}
+                  />
+                </label>
+              </form>
+              <RegionDropdown setRegion={setRegion} />
+            </div>
+            <div className="Country-list">
+              <Countries
+                region={region}
+                keyWord={keyWord}
+                setFocusedCountry={setFocusedCountry}
+              />
+            </div>
           </div>
-          <div className="Country-list">
-            <Countries
-              region={region}
-              keyWord={keyWord}
-              setFocusedCountry={setFocusedCountry}
-            />
-          </div>
-        </div>
-      ) : (
-        <CountryPage
-          country={focusedCountry}
-          setFocusedCountry={setFocusedCountry}
-        />
-      )}
+        ) : (
+          <CountryPage
+            country={focusedCountry}
+            setFocusedCountry={setFocusedCountry}
+          />
+        )}
+      </main>
     </div>
   );
 }
