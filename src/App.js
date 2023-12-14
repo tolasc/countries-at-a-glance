@@ -82,7 +82,6 @@ async function getMultiCodeData(codes) {
 }
 
 function Countries({ region, keyWord, setFocusedCountry }) {
-  console.log("running");
   const [countries, setCountries] = useState();
   useEffect(() => {
     const dataFetch = async () => {
@@ -94,8 +93,7 @@ function Countries({ region, keyWord, setFocusedCountry }) {
     dataFetch();
   }, [region]);
 
-  if (!countries) return <p>Loading...</p>;
-  console.log("rendering");
+  if (!countries) return <p className="loading-placeholder">Loading...</p>;
   return (
     <CountryCards
       countries={countries.filter((country) =>
@@ -120,7 +118,6 @@ function CountryCards({ countries, setFocusedCountry }) {
       setFocusedCountry={setFocusedCountry}
     />
   ));
-  //console.log(list);
   return list;
 }
 
@@ -167,7 +164,8 @@ function CountryPage({ country, setFocusedCountry }) {
     dataFetch();
   }, [country]);
 
-  if (!countryInfo || !borderCountries) return "loading";
+  if (!countryInfo || !borderCountries)
+    return <p className="loading-placeholder">Loading...</p>;
   console.log(countryInfo);
   console.log(borderCountries);
   console.log("Trying render");

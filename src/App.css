@@ -71,6 +71,11 @@ body {
   display: flex;
   font-size: 14px;
 }
+.loading-placeholder {
+  color: var(--text-color);
+  text-align: center;
+  font-size: 16px;
+}
 
 .filter-options {
   display: flex;
