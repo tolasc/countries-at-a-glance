@@ -209,6 +209,11 @@ img {
   width: 100%;
 }
 
+.Country-card img {
+  object-fit: cover;
+  aspect-ratio: 5/3;
+}
+
 .Country-back {
   width: 100%;
 }
